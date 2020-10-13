@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tetris</title>
+        <link rel='stylesheet' href='layout.css' />
+        <script type="text/javascript" src="./Common/webgl-utils.js"></script>
+        <script type="text/javascript" src="./Common/initShaders.js"></script>
+        <script type="text/javascript" src="./Common/MV.js"></script>
+        <script src='jscode/tetris.js'></script>
+        <script src='jscode/render.js'></script>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            attribute vec4 vPosition;
+            attribute vec4 vColor;
+            varying vec4 fColor;
+            void
+            main()
+            {
+                fColor = vColor;
+                gl_Position = vPosition;
+                gl_PointSize =1.0;
+            }
+            </script>
+        
+        
+            <script id="fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+            varying vec4 fColor;
+            void
+            main()
+            {
+                gl_FragColor = fColor;
+            }
+            </script>
+    </head>
+    <body>
+        <canvas id="gl-canvas" width='600' height='800'></canvas>
+        <button id="startButton" onclick="startButtonClicked()">Start</button>
+        <div id="infomation">
+            score:<span id="score">0</span>
+        </div>
+        <div id="explain">Explain: W:rotate  A:left  D:right  S:down </div>
+    </body>
+</html>
